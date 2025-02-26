@@ -1,22 +1,21 @@
 #!/bin/bash
 
-#Author: seshoumara
-#http://codegolf.stackexchange.com/users/59010/seshoumara
+# Author: seshoumara
+# https://discord.gg/QqthWQzgkW
 
-#How it works:
-	#- each line you type is executed as a GNU sed script
-	#- the shell environment contains a single memory register, initially empty
-	#- the sed script receives as input the content of the memory register
-	#- the memory register is overwritten with the script's output (useful for chaining scripts)
+# How it works:
+	# - each line you type is executed as a GNU sed script
+	# - the shell environment contains a single memory register, initially empty
+	# - the sed script receives as input the content of the memory register
+	# - the memory register is overwritten with the script's output (useful for chaining scripts)
 
-#Tips and tricks:
-	#- if you want to save the memory register, run ":r;$!{N;br};p;wmem.reg"; then to load it, run "1rmem.reg"
+# Tips and tricks:
+	# - if you want to save the memory register, run ":r;$!{N;br};p;wmem.reg"; then to load it, run "1rmem.reg"
 
-#TODO: Implement command history
+# TODO: Implement command history
 
 
-
-#this is by default in scripts, but I make it explicit since sed syntax contains '!'
+# this is by default in scripts, but I make it explicit since sed syntax contains '!'
 set +H
 
 sed_program="$(which sed)"
@@ -27,18 +26,21 @@ memory_register=""
 clear
 while true; do
 	read -erp "$prompt" sed_command
-	#comparing to an empty string might not be a good idea, so I append 'x'
+	
+	# comparing to an empty string might not be a good idea, so I append 'x'
 	if [[ "$sed_command""x" == "x" ]]; then
 		continue
 	fi
 	if [[ "$sed_command" == "Q" ]]; then
 		exit
 	fi
-	#since the command substitution removes the trailing newlines, I'm appending an artifical 'x' and then I delete it
+	
+	# since the command substitution removes the trailing newlines, I'm appending an artifical 'x' and then I delete it
 	sed_output="$("$sed_program" "$sed_flags" "$sed_command" <<< "$memory_register";echo "x")"
-	#if sed gives no output, only 'x' exists instead of '\nx', in which case "${sed_output%??}" will fail (deleting from empty string is ok though)
+	# if sed gives no output, only 'x' exists instead of '\nx', in which case "${sed_output%??}" will fail (deleting from empty string is ok though)
 	sed_output="${sed_output%?}"
 	sed_output="${sed_output%?}"
+	
 	memory_register="$sed_output"
 	if [[ "$sed_output""x" != "x" ]]; then
 		echo "$sed_output"

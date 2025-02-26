@@ -5,7 +5,7 @@
 
 :_Author
     # seshoumara
-    # http://codegolf.stackexchange.com/users/59010/seshoumara
+    # https://discord.gg/QqthWQzgkW
 
 :_TODO
     # 1. optimal bot strategy

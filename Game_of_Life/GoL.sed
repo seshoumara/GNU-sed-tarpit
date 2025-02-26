@@ -7,7 +7,7 @@
 
 :_Author
     # seshoumara
-    # http://codegolf.stackexchange.com/users/59010/seshoumara
+    # https://discord.gg/QqthWQzgkW
 
 :_TODO
     # 1. input file with just the pattern, auto centered
@@ -52,12 +52,12 @@
 
 :center_pattern_in_grid
     t center_pattern_in_grid
-    s:^:.......................................................:mg
-    s:$:.......................................................:mg
-    :trim
-        s:^\.::mg
-        //
-    t trim
+#     s:^:.......................................................:mg
+#     s:$:.......................................................:mg
+#     :trim
+#         s:^\.::mg
+#         //
+#     t trim
     b continue_init
 
 :update_screen

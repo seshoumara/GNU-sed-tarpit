@@ -1,19 +1,15 @@
-#Author: seshoumara
-#http://codegolf.stackexchange.com/users/59010/seshoumara
+# Program: print if the integer number is odd or even
 
-#Turing machine author: Christophe Blaess <ccb@club-internet.fr>
-#http://sed.sourceforge.net/grabbag/scripts/turing.sed
-
+# Author: seshoumara
+# https://discord.gg/QqthWQzgkW
 
 
-#Program: prints if the integer number is odd or even
-
-
-#tape initialization
+# tape initialization
 |-1234
 
-#State 0 (main): move head to the end of the input number
+# State 0: move head to the end of the input number
 0--R0
+0++R0
 000R0
 011R0
 022R0
@@ -26,7 +22,7 @@
 099R0
 0  Lp
 
-#State p (parity): write "e" for even numbers, or "o" for odd numbers
+# State p: parity check (write "e" for even, "o" for odd)
 p0eLr
 p1oLr
 p2eLr
@@ -38,8 +34,9 @@ p7oLr
 p8eLr
 p9oLr
 
-#State r (remove): delete the minus sign and the digits
-r- Lr
+# State r: remove starting digits and the sign (if any), then exit
+r-  r
+r+  r
 r0 Lr
 r1 Lr
 r2 Lr
@@ -50,18 +47,4 @@ r6 Lr
 r7 Lr
 r8 Lr
 r9 Lr
-r  Rj
-
-#State j (jump): jump to respective printing states dependent on parity
-j  Rj
-jooR1
-jeeR3
-
-#States 1 to 2: print "dd" and exit (state $)
-1 dR2
-2 d $
-
-#States 3 to 5: print "ven" and exit (state $)
-3 vR4
-4 eR5
-5 n $
+r  R$

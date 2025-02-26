@@ -1,18 +1,14 @@
-#Author: seshoumara
-#http://codegolf.stackexchange.com/users/59010/seshoumara
+# Program: print "Hello World!"
 
-#Turing machine author: Christophe Blaess <ccb@club-internet.fr>
-#http://sed.sourceforge.net/grabbag/scripts/turing.sed
-
+# Author: seshoumara
+# https://discord.gg/QqthWQzgkW
 
 
-#Program: prints "Hello World!"
+# tape initialization:
+|.
 
-
-#tape initialization: start with a default blank tape
-
-#States 0 to 9 and A to B: print "Hello World!" one character at a time and exit (state $)
-0 HR1
+# States 0 to B: write "Hello World!", then exit
+0.HR1
 1 eR2
 2 lR3
 3 lR4
